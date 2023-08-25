@@ -33,3 +33,8 @@ stages:
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: |
           $(tag)
+    - task: AzureWebAppContainer@1
+      inputs:
+        azureSubscription: 'Azure subscription 1(4f50daa8-201d-461d-b630-4d093a3f4be1)'
+        appName: $(appName)
+        containers: $(containerRegistry)/$(imageRepository):$(tag)
