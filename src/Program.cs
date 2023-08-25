@@ -13,5 +13,4 @@ app.UseServiceModel(serviceBuilder =>
     var serviceMetadataBehavior = app.Services.GetRequiredService<ServiceMetadataBehavior>();
     serviceMetadataBehavior.HttpsGetEnabled = false;
 });
-
 app.Run();
