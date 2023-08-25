@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "ExternalService": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:7182;http://localhost:5299"
+    }
+  }
+}
