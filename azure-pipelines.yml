@@ -39,9 +39,10 @@ stages:
         appName: $(appName)
         containers: $(containerRegistry)/$(imageRepository):$(tag)
       
-    - task: DotNetCoreCLI@2
+    - task: AzurePowerShell@5
       inputs:
-        command: 'custom'
-        custom: 'dev-certs https'
-        arguments: '--trust'
+        azureSubscription: 'Azure subscription 1(4f50daa8-201d-461d-b630-4d093a3f4be1)'
+        ScriptType: 'InlineScript'
+        Inline: 'dotnet dev-certs https --trust'
+        azurePowerShellVersion: 'LatestVersion'
         
