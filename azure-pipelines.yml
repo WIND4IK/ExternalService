@@ -24,18 +24,8 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@2
-      displayName: Build an image
+
+    - task: DotNetCoreCLI@2
       inputs:
-        containerRegistry: $(containerRegistryServiceConnection)
-        repository: $(imageRepository)
-        command: 'buildAndPush'
-        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
-    - task: AzureWebAppContainer@1
-      inputs:
-        azureSubscription: 'Azure subscription 1(4f50daa8-201d-461d-b630-4d093a3f4be1)'
-        appName: $(appName)
-        containers: $(containerRegistry)/$(imageRepository):$(tag)
-        
+        command: 'custom'
+        custom: 'dev-certs https --trust'
