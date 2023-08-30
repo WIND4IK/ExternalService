@@ -10,8 +10,8 @@ var app = builder.Build();
 app.UseServiceModel(serviceBuilder =>
 {
     serviceBuilder.AddService<ExternalServiceImpl>();
-    //serviceBuilder.AddServiceEndpoint<ExternalServiceImpl, DomainBellaNS.API.ExternalService.ExternalService>(new BasicHttpBinding() , "/ExternalService");
-    serviceBuilder.AddServiceEndpoint<ExternalServiceImpl, DomainBellaNS.API.ExternalService.ExternalService>(new BasicHttpBinding { Security = { Mode = BasicHttpSecurityMode.Transport, Transport = { ClientCredentialType = HttpClientCredentialType.None}}}, "/ExternalService");
+    serviceBuilder.AddServiceEndpoint<ExternalServiceImpl, DomainBellaNS.API.ExternalService.ExternalService>(new BasicHttpBinding() , "/ExternalService");
+    //serviceBuilder.AddServiceEndpoint<ExternalServiceImpl, DomainBellaNS.API.ExternalService.ExternalService>(new BasicHttpBinding { Security = { Mode = BasicHttpSecurityMode.Transport, Transport = { ClientCredentialType = HttpClientCredentialType.None}}}, "/ExternalService");
     var serviceMetadataBehavior = app.Services.GetRequiredService<ServiceMetadataBehavior>();
     serviceMetadataBehavior.HttpsGetEnabled = true;
 });
