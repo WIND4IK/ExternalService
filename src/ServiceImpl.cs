@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Text;
 using System.Reflection;
 using NLog;
+using System.Net;
 
 namespace ExternalService
 {
@@ -11,6 +12,11 @@ namespace ExternalService
     public class ExternalServiceImpl : DomainBellaNS.API.ExternalService.ExternalService
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
+        public ExternalServiceImpl()
+        {
+            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+        }
         public async Task<List<ActiveBundle>> ExternalCall1(string url)
         {
             var client = new HttpClient { BaseAddress = new Uri(url.Replace("\\", "/")) };
