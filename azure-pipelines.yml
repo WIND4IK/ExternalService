@@ -38,8 +38,3 @@ stages:
         azureSubscription: 'Azure subscription 1(4f50daa8-201d-461d-b630-4d093a3f4be1)'
         appName: $(appName)
         containers: $(containerRegistry)/$(imageRepository):$(tag)
-
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'
-        script: 'dotnet dev-certs https --trust'
