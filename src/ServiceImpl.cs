@@ -24,6 +24,17 @@ namespace ExternalService
             return await response.Content.ReadFromJsonAsync<List<ActiveBundle>>();
         }
 
+        public async Task<string> ExternalCall3(string url)
+        {
+            return url;
+            //var client = new HttpClient { BaseAddress = new Uri(url.Replace("\\", "/")) };
+            //var response = await client.GetAsync("");
+            //if (!response.IsSuccessStatusCode)
+            //{
+            //    throw new Exception(await response.Content.ReadAsStringAsync());
+            //}
+            //return await response.Content.ReadFromJsonAsync<List<ActiveBundle>>();
+        }
         public async Task<List<BundleWithPrice>> ExternalCall2(string url, List<int> body)
         {
             var client = new HttpClient { BaseAddress = new Uri(url.Replace("\\", "/")) };

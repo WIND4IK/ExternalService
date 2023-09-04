@@ -16,6 +16,10 @@ Task<List<ActiveBundle>> ExternalCall1(string url );
 [FaultContractAttribute(typeof(DomainFault))]
 Task<List<BundleWithPrice>> ExternalCall2(string url , List<int> body);
 
+        [OperationContract]
+        [FaultContractAttribute(typeof(DomainFault))]
+        Task<string> ExternalCall3(string url);
+
 
     }
 }
