@@ -10,11 +10,10 @@ namespace ExternalService
     [ServiceBehavior(IncludeExceptionDetailInFaults = true, InstanceContextMode = InstanceContextMode.Single)]
     public class ExternalServiceImpl : DomainBellaNS.API.ExternalService.ExternalService
     {
-        private readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public async Task<List<ActiveBundle>> ExternalCall1(string url)
         {
-            _logger.Error($"{url}");
-            _logger.Error($"{url.Replace("\\", "/")}");
+            System.Diagnostics.Debug.WriteLine($"{url}");
+            System.Diagnostics.Debug.WriteLine($"{url.Replace("\\", "/")}");
             var client = new HttpClient { BaseAddress = new Uri(url.Replace("\\", "/")) };
             var response = await client.GetAsync("");
             if (!response.IsSuccessStatusCode)
