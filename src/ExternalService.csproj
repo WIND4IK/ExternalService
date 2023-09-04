@@ -16,5 +16,6 @@
   <ItemGroup>
     <PackageReference Include="CoreWCF.Primitives" Version="1.*" />
     <PackageReference Include="CoreWCF.Http" Version="1.3.2" />
+    <PackageReference Include="log4net" Version="2.0.15" />
   </ItemGroup>
 </Project>
