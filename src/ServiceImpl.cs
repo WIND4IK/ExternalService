@@ -13,8 +13,6 @@ namespace ExternalService
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         public async Task<List<ActiveBundle>> ExternalCall1(string url)
         {
-            _logger.Info($"{url}");
-            _logger.Info($"{url.Replace("\\", "/")}");
             var client = new HttpClient { BaseAddress = new Uri(url.Replace("\\", "/")) };
             var response = await client.GetAsync("");
             if (!response.IsSuccessStatusCode)
@@ -26,7 +24,7 @@ namespace ExternalService
 
         public async Task<string> ExternalCall3(string url)
         {
-            return url;
+            return url.Replace("\\", "/");
             //var client = new HttpClient { BaseAddress = new Uri(url.Replace("\\", "/")) };
             //var response = await client.GetAsync("");
             //if (!response.IsSuccessStatusCode)
