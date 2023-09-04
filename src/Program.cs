@@ -1,10 +1,17 @@
-using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
+var logger = NLogBuilder.ConfigureNLog("NLog.config").GetCurrentClassLogger();
 var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddServiceModelServices();
 builder.Services.AddServiceModelMetadata();
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
+builder.Services.AddLogging(loggingBuilder =>
+{
+    loggingBuilder.ClearProviders();
+    loggingBuilder.AddNLog();
+});
 
 var app = builder.Build();
 //app.UseHttpsRedirection();
