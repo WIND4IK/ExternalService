@@ -13,19 +13,18 @@ namespace ExternalService
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-        public ExternalServiceImpl()
-        {
-            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-        }
         public async Task<List<ActiveBundle>> ExternalCall1(string url)
         {
-            var client = new HttpClient { BaseAddress = new Uri(url.Replace("\\", "/")) };
-            var response = await client.GetAsync("");
-            if (!response.IsSuccessStatusCode)
+            using (var client = new HttpClient { BaseAddress = new Uri(url.Replace("\\", "/")) })
             {
-                throw new Exception(await response.Content.ReadAsStringAsync());
+                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+                var response = await client.GetAsync("");
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new Exception(await response.Content.ReadAsStringAsync());
+                }
+                return await response.Content.ReadFromJsonAsync<List<ActiveBundle>>();
             }
-            return await response.Content.ReadFromJsonAsync<List<ActiveBundle>>();
         }
 
         public async Task<string> ExternalCall3(string url)
