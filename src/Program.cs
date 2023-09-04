@@ -1,7 +1,9 @@
+using NLog;
 using NLog.Extensions.Logging;
 using NLog.Web;
+using System.Reflection;
 
-var logger = NLogBuilder.ConfigureNLog("NLog.config").GetCurrentClassLogger();
+var logger = LogManager.Setup().LoadConfigurationFromAssemblyResource(Assembly.GetExecutingAssembly()).GetCurrentClassLogger();
 var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddServiceModelServices();
