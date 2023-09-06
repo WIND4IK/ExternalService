@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 as build-env
 WORKDIR /src
-EXPOSE 3344
-ENV ASPNETCORE_URLS=http://*:3344
+EXPOSE 80
+ENV ASPNETCORE_URLS=http://*:80
 
 COPY /src/*.csproj .
 RUN dotnet restore

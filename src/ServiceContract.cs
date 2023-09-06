@@ -9,17 +9,11 @@ namespace DomainBellaNS.API.ExternalService
     public interface ExternalService
     {
         [OperationContract]
-[FaultContractAttribute(typeof(DomainFault))]
-Task<List<ActiveBundle>> ExternalCall1(string url );
-
-[OperationContract]
-[FaultContractAttribute(typeof(DomainFault))]
-Task<List<BundleWithPrice>> ExternalCall2(string url , List<int> body);
+        [FaultContractAttribute(typeof(DomainFault))]
+        Task<List<ActiveBundle>> ExternalCall1(string url);
 
         [OperationContract]
         [FaultContractAttribute(typeof(DomainFault))]
-        Task<string> ExternalCall3(string url);
-
-
+        Task<List<BundleWithPrice>> ExternalCall2(string url, List<int> body);
     }
 }
