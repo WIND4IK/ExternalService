@@ -1,19 +1,9 @@
-using NLog;
-using NLog.Extensions.Logging;
-using NLog.Web;
-using System.Reflection;
-
-var logger = LogManager.Setup().LoadConfigurationFromAssemblyResource(Assembly.GetExecutingAssembly()).GetCurrentClassLogger();
 var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddServiceModelServices();
 builder.Services.AddServiceModelMetadata();
 builder.Services.AddSingleton<IServiceBehavior, UseRequestHeadersForMetadataAddressBehavior>();
-builder.Services.AddLogging(loggingBuilder =>
-{
-    loggingBuilder.ClearProviders();
-    loggingBuilder.AddNLog();
-});
+
 
 var app = builder.Build();
 //app.UseHttpsRedirection();
